@@ -75,5 +75,12 @@
     "imdbID": "tt0110357",
     "Type": "movie",
     "Poster": "https://res.cloudinary.com/dmk6k0td1/image/upload/v1653057140/benchmark/tnmuawpfgeoixr0uuxhs.jpg"
+  },
+  {
+    "Title": "Happy Gilmore",
+    "Year": "1996",
+    "imdbID": "tt0116483",
+    "Type": "movie",
+    "Poster": "https://res.cloudinary.com/dmk6k0td1/image/upload/v1653059288/benchmark/t34tk3e9gfwiiut3pd5f.jpg"
   }
 ]
