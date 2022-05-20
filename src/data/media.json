@@ -61,5 +61,19 @@
     "imdbID": "tt1014759",
     "Type": "movie",
     "Poster": "https://m.media-amazon.com/images/M/MV5BMTMwNjAxMTc0Nl5BMl5BanBnXkFtZTcwODc3ODk5Mg@@._V1_SX300.jpg"
+  },
+  {
+    "Title": "Fight Club",
+    "Year": "1999",
+    "imdbID": "tt0137523",
+    "Type": "movie",
+    "Poster": "https://res.cloudinary.com/dmk6k0td1/image/upload/v1653056710/benchmark/jrh2rz4ts5yvznstoibx.jpg"
+  },
+  {
+    "Title": "The Lion King",
+    "Year": "1994",
+    "imdbID": "tt0110357",
+    "Type": "movie",
+    "Poster": "https://res.cloudinary.com/dmk6k0td1/image/upload/v1653057140/benchmark/tnmuawpfgeoixr0uuxhs.jpg"
   }
 ]
