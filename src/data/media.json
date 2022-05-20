@@ -47,5 +47,19 @@
     "imdbID": "tt0057251",
     "Type": "movie",
     "Poster": "https://m.media-amazon.com/images/M/MV5BMTcxNTU5NzI4MF5BMl5BanBnXkFtZTcwMjc1NDk0NA@@._V1_SX300.jpg"
+  },
+  {
+    "Title": "Shrek 2",
+    "Year": "2004",
+    "imdbID": "tt0298148",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMDJhMGRjN2QtNDUxYy00NGM3LThjNGQtMmZiZTRhNjM4YzUxL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
+  },
+  {
+    "Title": "Alice in Wonderland",
+    "Year": "2010",
+    "imdbID": "tt1014759",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMTMwNjAxMTc0Nl5BMl5BanBnXkFtZTcwODc3ODk5Mg@@._V1_SX300.jpg"
   }
 ]

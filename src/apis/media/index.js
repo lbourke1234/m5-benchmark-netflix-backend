@@ -34,22 +34,26 @@ mediaRouter.post('/', async (req, res, next) => {
 mediaRouter.get('/', async (req, res, next) => {
   try {
     const mediaList = await getMediaList()
-    console.log('req.query.s:', req.query.s)
-    // console.log('req.query.s', req.query.s)
 
     if (req.query && req.query.s) {
       const foundMovie = mediaList.find(
         (movie) => movie.Title.toLowerCase() === req.query.s.toLowerCase()
       )
       if (foundMovie) {
-        res.send(foundMovie)
+        const reviewsList = await getReviewsList()
+        const foundReviews = reviewsList.filter(
+          (review) => review.elementId === foundMovie.imdbID
+        )
+        res.send({ movie: foundMovie, reviews: foundReviews })
         return
       } else if (!foundMovie) {
         const response = await fetch(
           `http://www.omdbapi.com/?s=${req.query.s}&apikey=6e593066`
         )
+
         const body = await response.json()
         const movie = body.Search[0]
+        console.log(movie)
 
         if (movie) {
           const newMediaItem = {
@@ -73,7 +77,8 @@ mediaRouter.get('/', async (req, res, next) => {
         next(createError(404, `Movie ${req.query.Title} not found!`))
       }
     }
-    res.send(mediaList)
+    const reviewsList = await getReviewsList()
+    res.send({ movies: mediaList, reviews: reviewsList })
   } catch (error) {
     next(error)
   }
@@ -86,6 +91,14 @@ mediaRouter.get('/:imdbID', async (req, res, next) => {
       (item) => item.imdbID === req.params.imdbID
     )
     if (foundMediaItem) {
+      const reviewsList = await getReviewsList()
+      const foundReviews = reviewsList.filter(
+        (review) => review.elementId === req.params.imdbID
+      )
+      if (foundReviews) {
+        res.send({ movie: foundMediaItem, reviews: foundReviews })
+        return
+      }
       res.send(foundMediaItem)
     } else {
       next(
