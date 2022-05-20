@@ -1,1 +1,51 @@
-[{"imdbID":"tt0120737","Title":"The Lord of the Flies: The Fellowship of the Ring","Year":"2019","Type":"movie","Poster":"https://m.media-amazon.com/images/M/MV5BMTM5MzcwOTg4MF5BMl5BanBnXkFtZTgwOTQwMzQxMDE@._V1_SX300.jpg"},{"imdbID":"tt0120729","Title":"example for poster","Year":"2022","Type":"movie","Poster":"changethis.jpg","poster":"https://res.cloudinary.com/dmk6k0td1/image/upload/v1653041196/benchmark/j5ajkopqg0m1ugc0cefv.jpg"}]
+[
+  {
+    "imdbID": "tt0120737",
+    "Title": "The Lord of the Flies: The Fellowship of the Ring",
+    "Year": "2019",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMTM5MzcwOTg4MF5BMl5BanBnXkFtZTgwOTQwMzQxMDE@._V1_SX300.jpg"
+  },
+  {
+    "imdbID": "tt0120729",
+    "Title": "example for poster",
+    "Year": "2022",
+    "Type": "movie",
+    "Poster": "https://res.cloudinary.com/dmk6k0td1/image/upload/v1653052312/benchmark/mujwfxekoulrb7tgxext.jpg"
+  },
+  {
+    "imdbID": "tt0120729",
+    "Title": "example",
+    "Year": "2022",
+    "Type": "movie",
+    "Poster": "changethis.jpg"
+  },
+  {
+    "Title": "Shrek",
+    "Year": "2001",
+    "imdbID": "tt0126029",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
+  },
+  {
+    "Title": "James Bond 007: Everything or Nothing",
+    "Year": "2003",
+    "imdbID": "tt0366629",
+    "Type": "game",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BNzhiNjgxNGMtMzg0ZS00ODMwLTk5MTYtYzI0NDBmOThlZjY3XkEyXkFqcGdeQXVyNTEwNDY2MjU@._V1_SX300.jpg"
+  },
+  {
+    "Title": "Inside Out",
+    "Year": "2015",
+    "imdbID": "tt2096673",
+    "Type": "movie",
+    "Poster": "https://res.cloudinary.com/dmk6k0td1/image/upload/v1653052334/benchmark/jmwta6tkicggiphpg9on.jpg"
+  },
+  {
+    "Title": "Lilies of the Field",
+    "Year": "1963",
+    "imdbID": "tt0057251",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMTcxNTU5NzI4MF5BMl5BanBnXkFtZTcwMjc1NDk0NA@@._V1_SX300.jpg"
+  }
+]

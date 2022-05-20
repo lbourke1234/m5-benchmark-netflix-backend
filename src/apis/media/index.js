@@ -4,13 +4,19 @@ import {
   mediaJSONPath,
   writeMediaList,
   getReviewsList,
-  writeReviewsList
+  writeReviewsList,
+  getPDFsPath
 } from '../../lib/fs-tools.js'
 import uniqid from 'uniqid'
 import createError from 'http-errors'
 import multer from 'multer'
 import { v2 as cloudinary } from 'cloudinary'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
+import { pipeline } from 'stream'
+import { getPDFReadableStream } from '../../lib/pdf-tools.js'
+import { promisify } from 'util'
+import fs from 'fs-extra'
+import fetch from 'node-fetch'
 
 const mediaRouter = express.Router()
 
@@ -28,6 +34,45 @@ mediaRouter.post('/', async (req, res, next) => {
 mediaRouter.get('/', async (req, res, next) => {
   try {
     const mediaList = await getMediaList()
+    console.log('req.query.s:', req.query.s)
+    // console.log('req.query.s', req.query.s)
+
+    if (req.query && req.query.s) {
+      const foundMovie = mediaList.find(
+        (movie) => movie.Title.toLowerCase() === req.query.s.toLowerCase()
+      )
+      if (foundMovie) {
+        res.send(foundMovie)
+        return
+      } else if (!foundMovie) {
+        const response = await fetch(
+          `http://www.omdbapi.com/?s=${req.query.s}&apikey=6e593066`
+        )
+        const body = await response.json()
+        const movie = body.Search[0]
+
+        if (movie) {
+          const newMediaItem = {
+            Title: movie.Title,
+            Year: movie.Year,
+            imdbID: movie.imdbID,
+            Type: movie.Type,
+            Poster: movie.Poster
+          }
+          mediaList.push(newMediaItem)
+          await writeMediaList(mediaList)
+          res.status(201).send(newMediaItem)
+          return
+        } else {
+          next(createError(404, `movie with name: ${req.query.s} not found!`))
+        }
+
+        res.send(movie)
+        return
+      } else {
+        next(createError(404, `Movie ${req.query.Title} not found!`))
+      }
+    }
     res.send(mediaList)
   } catch (error) {
     next(error)
@@ -116,7 +161,7 @@ mediaRouter.post(
         const oldMediaItem = mediaList[index]
         const updatedMediaItem = {
           ...oldMediaItem,
-          poster: req.file.path
+          Poster: req.file.path
         }
         mediaList[index] = updatedMediaItem
         await writeMediaList(mediaList)
@@ -176,6 +221,29 @@ mediaRouter.delete('/:reviewId/reviews', async (req, res, next) => {
       next(
         createError(404, `Review with id: ${req.params.reviewId} not found!`)
       )
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
+mediaRouter.get('/:imdbId/pdf', async (req, res, next) => {
+  try {
+    const mediaList = await getMediaList()
+    const foundMediaItem = mediaList.find(
+      (item) => item.imdbID === req.params.imdbId
+    )
+    if (foundMediaItem) {
+      const asyncPipeline = promisify(pipeline)
+
+      const pdfReadableStream = getPDFReadableStream(foundMediaItem)
+
+      const path = getPDFsPath('test.pdf')
+
+      await asyncPipeline(pdfReadableStream, fs.createWriteStream(path))
+      res.send()
+    } else {
+      next(createError(404, `Movie with id: ${req.params.imdbId} not found!`))
     }
   } catch (error) {
     next(error)

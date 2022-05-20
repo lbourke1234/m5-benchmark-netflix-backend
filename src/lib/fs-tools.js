@@ -14,3 +14,6 @@ export const writeMediaList = (mediaArray) =>
 export const getReviewsList = () => readJSON(reviewsJSONPath)
 export const writeReviewsList = (reviewsArray) =>
   writeJSON(reviewsJSONPath, reviewsArray)
+
+export const getPDFsPath = (filename) =>
+  join(process.cwd(), './src/data/pdf', filename)
